@@ -5,27 +5,35 @@ enum CardColor {
   Black = "Black",
 }
 
-const CardSchema: Schema = new Schema({
-  content: {
-    type: String,
-    required: true,
-    unique: true,
+const CardSchema: Schema = new Schema(
+  {
+    content: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    grouping: {
+      type: String,
+      required: false,
+      default: "Default",
+    },
+    color: {
+      type: CardColor,
+      required: true,
+    },
+    warning: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
-  grouping: {
-    type: String,
-    required: true,
-  },
-  color: {
-    type: CardColor,
-    required: true,
-  },
-  warning: {
-    type: Boolean,
-    required: true,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 export interface ICard extends Document {
+  createdAt: String;
   content: String;
   grouping: String;
   color: CardColor;
