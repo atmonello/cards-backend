@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Card, { ICard } from "../schemas/Card";
+import Card from "../schemas/Card";
 import Logger from "../services/Logger";
 
 export default {
