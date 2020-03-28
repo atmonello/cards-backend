@@ -23,7 +23,11 @@ export default {
     return res.json({ message: cards });
   },
   async store(req: Request, res: Response) {
-    const { content } = req.body;
+    const { content, color } = req.body;
+
+    if (!content || !color) return res.status(400).json({
+      message: "Missing field",
+    });
 
     const repeated = await Card.findOne({ content });
 
