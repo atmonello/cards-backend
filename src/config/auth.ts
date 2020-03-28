@@ -1,11 +1,24 @@
-interface IAuthConfig {
-  expires: string;
-  secret: string;
-}
+import {Secret} from "jsonwebtoken";
 
-const config: IAuthConfig = {
-  expires: "7d",
-  secret: "568bb298b173899f584db1d6f8f3f7cd",
+export enum ExpireLenght {
+  day = '1d',
+  week = '7d',
+  month = '30d'
 };
 
-export default config;
+interface IAuthConfig {
+  secret?: Secret,
+  expires?: ExpireLenght
+}
+
+class Auth {
+  secret?: Secret;
+  expires?: ExpireLenght;
+
+  constructor(config: IAuthConfig) {
+    this.secret = config.secret;
+    this.expires = config.expires;
+  }
+}
+
+export default Auth;

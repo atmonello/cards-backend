@@ -11,17 +11,20 @@ import Logger from "./utils/Logger";
 
 const env = process.env.NODE_ENV?.trim();
 
-dotenv.config({
+const result = dotenv.config({
   path: path.resolve(__dirname, "..", `.env.${process.env.NODE_ENV}`)
 });
 
-Logger.log(`ENV: ${env}`);
+const mongo = new dbConfig({
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+});
 
 const port = process.env.APP_PORT;
 
 const app = express();
 
-mongoose.connect(dbConfig.dbUrl, {
+mongoose.connect(mongo.url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -31,4 +34,4 @@ app.use(express.json());
 app.use(routes);
 
 app.listen(port);
-Logger.log(`App rodando na porta ${port}`);
+Logger.log(`App running in ${env} mode on port ${port}`);

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import jwt from "jsonwebtoken";
+import jwt, {Secret} from "jsonwebtoken";
 
-import auth from "../config/auth";
+import Auth, {ExpireLenght} from "../config/auth";
 
 import User, { comparePassword } from "../schemas/User";
 
@@ -21,16 +21,27 @@ export default {
 
     const { id, email: userEmail, firstName } = user;
 
-    return res.json({
-      message: "Password OK",
-      details: {
-        user: {
-          id,
-          email: userEmail,
-          firstName,
-        },
-        token: jwt.sign({ id }, auth.secret, { expiresIn: auth.expires }),
-      },
+    const auth = new Auth({
+      expires: ExpireLenght.week,
+      secret: process.env.AUTH_SECRET as Secret
     });
+
+    if (auth.secret) {
+      return res.json({
+        message: "Password OK",
+        details: {
+          user: {
+            id,
+            email: userEmail,
+            firstName,
+          },
+          token: jwt.sign({ id }, auth.secret, {
+            expiresIn: auth.expires
+          }),
+        },
+      });
+    } else {
+      return res.status(500).json({ message: "The server could not verify the token" });
+    }
   },
 };
