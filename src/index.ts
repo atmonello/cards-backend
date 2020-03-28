@@ -1,13 +1,23 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import * as dotenv from "dotenv";
+import path from "path";
 
 import routes from "./routes";
 import dbConfig from "./config/db";
 
 import Logger from "./utils/Logger";
 
-const port = 3333;
+const env = process.env.NODE_ENV?.trim();
+
+dotenv.config({
+  path: path.resolve(__dirname, "..", `.env.${process.env.NODE_ENV}`)
+});
+
+Logger.log(`ENV: ${env}`);
+
+const port = process.env.APP_PORT;
 
 const app = express();
 
