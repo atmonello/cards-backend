@@ -28,7 +28,7 @@ const mongo = new dbConfig({
   password: process.env.DB_PASSWORD,
 });
 
-const port = process.env.APP_PORT;
+const port = process.env.PORT || process.env.APP_PORT;
 
 const app = express();
 
