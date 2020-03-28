@@ -1,8 +1,8 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 enum CardColor {
-  White = "White",
-  Black = "Black",
+  White = "white",
+  Black = "black",
 }
 
 const CardSchema: Schema = new Schema(
@@ -15,7 +15,7 @@ const CardSchema: Schema = new Schema(
     grouping: {
       type: String,
       required: false,
-      default: "Default",
+      default: "default",
     },
     color: {
       type: CardColor,
