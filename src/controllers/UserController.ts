@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import User from "../schemas/User";
-import Logger from "../services/Logger";
+import Logger from "../utils/Logger";
 
 export default {
   async index(req: Request, res: Response) {

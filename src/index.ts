@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import routes from "./routes";
 import dbConfig from "./config/db";
 
-import Logger from "./services/Logger";
+import Logger from "./utils/Logger";
 
 const port = 3333;
 

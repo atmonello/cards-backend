@@ -1,6 +1,6 @@
 import { Document, Schema, Model, model } from "mongoose";
 import bcrypt from "bcryptjs";
-import Logger from "../services/Logger";
+import Logger from "../utils/Logger";
 
 export interface IUser extends Document {
   email: string;
