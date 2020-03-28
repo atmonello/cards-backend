@@ -1,1 +1,1 @@
-web: npm install typescript -g && tsc && npm run server
+web: cd dist && node index.js
