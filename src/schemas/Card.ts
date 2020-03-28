@@ -1,4 +1,12 @@
-import mongoose, { Schema, Document } from "mongoose";
+import { Schema, Document, Model, model } from "mongoose";
+
+export interface ICard extends Document {
+  createdAt: String;
+  content: String;
+  grouping: String;
+  color: CardColor;
+  warning: Boolean;
+}
 
 enum CardColor {
   White = "white",
@@ -32,12 +40,9 @@ const CardSchema: Schema = new Schema(
   }
 );
 
-export interface ICard extends Document {
-  createdAt: String;
-  content: String;
-  grouping: String;
-  color: CardColor;
-  warning: Boolean;
-}
 
-export default mongoose.model<ICard>("Card", CardSchema);
+
+const Card: Model<ICard> = model<ICard>("Card", CardSchema);
+
+
+export default Card;
