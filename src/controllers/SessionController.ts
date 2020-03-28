@@ -5,8 +5,6 @@ import auth from "../config/auth";
 
 import User, { comparePassword } from "../schemas/User";
 
-import Logger from "../services/Logger";
-
 export default {
   async store(req: Request, res: Response) {
     const { email, password } = req.body;

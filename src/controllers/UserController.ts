@@ -33,7 +33,7 @@ export default {
     });
   },
   async update(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.user;
 
     if (!id || id.length !== 24) {
       return res.status(400).json({ message: "Incorrect ID parameter" });
