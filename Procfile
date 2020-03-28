@@ -1,1 +1,1 @@
-web: npm install typescript -g && tsc && npm run deploy:heroku
+web: npm install typescript -g && tsc && node dist/index.js
