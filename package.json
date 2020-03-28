@@ -24,6 +24,7 @@
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=development ts-node-dev --respawn --transpileOnly src/index.ts",
-    "server": "cross-env NODE_ENV=production ts-node-dev --respawn --transpileOnly src/index.ts"
+    "server": "cross-env NODE_ENV=production ts-node-dev --respawn --transpileOnly src/index.ts",
+    "deploy:heroku": "git subtree push --prefix dist heroku master"
   }
 }

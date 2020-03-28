@@ -1,0 +1,1 @@
+web: tsc && npm run deploy:heroku
