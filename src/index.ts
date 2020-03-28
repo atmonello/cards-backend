@@ -11,7 +11,15 @@ import Logger from "./utils/Logger";
 
 const env = process.env.NODE_ENV?.trim();
 
-const result = dotenv.config({
+declare global {
+  namespace Express {
+    export interface Request {
+        user?: string;
+    }
+  }
+}
+
+dotenv.config({
   path: path.resolve(__dirname, "..", `.env.${process.env.NODE_ENV}`)
 });
 
