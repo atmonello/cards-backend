@@ -10,10 +10,10 @@ const routes = Router();
 
 routes.post("/users", UserController.store);
 routes.post("/sessions", SessionController.store);
+routes.get("/cards", CardController.index);
 
 routes.use(AuthMiddleware);
 
-routes.get("/cards", CardController.index);
 routes.post("/cards", CardController.store);
 
 routes.get("/users", UserController.index);
