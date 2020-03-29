@@ -19,6 +19,7 @@ const UserSchema: Schema = new Schema(
     password: {
       type: String,
       required: true,
+      select: false
     },
     admin: {
       type: Boolean,
@@ -50,7 +51,7 @@ UserSchema.pre<IUser>("save", async function(next) {
 const User: Model<IUser> = model<IUser>("User", UserSchema);
 
 export const comparePassword = async function(email: string, password: string) {
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }).select("password");
 
   try {
     if (user) {

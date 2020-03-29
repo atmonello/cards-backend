@@ -1,13 +1,18 @@
 import { Request, Response } from "express";
-import User from "../schemas/User";
+import User, { IUser } from "../schemas/User";
 import Logger from "../utils/Logger";
 
 export default {
   async index(req: Request, res: Response) {
-    const users = await User.find();
+    const { id } = req.query;
+    let users;
 
-    if (users.length <= 0) {
-      return res.status(204).send();
+    if (id) {
+      users = await User.findById(id);
+      if (!users) return res.status(204).json({message:"Could not find user"});
+    } else {
+      users = await User.find();
+      if (users.length <= 0) return res.status(204).json({message: "No users found"});
     }
 
     return res.json(users);
